@@ -14,7 +14,7 @@ def create_app(test_conifg=None):
 
     app.config[
         "SQLALCHEMY_DATABASE_URI"
-    ] = "mysql+pymysql://root:password@localhost:3300/fashion"
+    ] = "mysql+pymysql://root:root@localhost:3306/fashion"
 
     if test_conifg:
         app.config["SECRET_KEY"] = test_conifg["SECRET_KEY"]

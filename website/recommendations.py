@@ -63,14 +63,14 @@ def get_recommendations():
     # take from the user table
     city = user.city
 
-    if contracts.RecommendationContractRequest.DATE_TIME_KEY in req_json_body:
-        dateTimeInput = req_json_body[contracts.RecommendationContractRequest.DATE_TIME_KEY]
-        dateInput = str(dateTimeInput).split("T")[0]
-        timeInput = str(dateTimeInput).split("T")[1]
+    #if contracts.RecommendationContractRequest.DATE_TIME_KEY in req_json_body:
+    #    dateTimeInput = req_json_body[contracts.RecommendationContractRequest.DATE_TIME_KEY]
+    #    dateInput = str(dateTimeInput).split("T")[0]
+    #    timeInput = str(dateTimeInput).split("T")[1]
 
-    else:
-        dateInput = datetime.today().strftime("%Y-%m-%d")
-        timeInput = datetime.now()
+    #else:
+    dateInput = datetime.today().strftime("%Y-%m-%d")
+    timeInput = datetime.now()
 
     if contracts.RecommendationContractRequest.GENDER_KEY in req_json_body:
         gender = req_json_body[contracts.RecommendationContractRequest.GENDER_KEY].lower(

@@ -34,21 +34,23 @@
   box-shadow: var(--shadow-2);
 }
 
-.media-element > img {
+.media-element>img {
   inline-size: 100%;
   aspect-ratio: 16 / 9;
   object-fit: contain;
 }
-button > img {
 
-    position: relative;
+button>img {
+
+  position: relative;
 }
+
 .snaps-inline {
   scroll-snap-type: inline mandatory;
   scroll-padding-inline: var(--_spacer, 1rem);
 }
 
-.snaps-inline > * {
+.snaps-inline>* {
   scroll-snap-align: start;
 }
 
@@ -81,53 +83,64 @@ button > img {
   margin-block: var(--size-9) var(--size-3);
 }
 
-#MyForm{
-    width: 300px;
-    border: 1px solid #ccc;
-    padding: 14px;
-    background: #ececec;
+#MyForm {
+  width: 300px;
+  border: 1px solid #ccc;
+  padding: 14px;
+  background: #ececec;
 }
-#Myimg{
-    background: transparent;
+
+#Myimg {
+  background: transparent;
 }
+
 body {
+  /*
     background-image: url(images/bgresult.jpg);
     background-size: cover;
     background-repeat:   no-repeat;
     background-position: center center;
+    */
 }
 
-body.modal-open .resultbg{
-    -webkit-filter: blur(1px);
-    -moz-filter: blur(1px);
-    -o-filter: blur(1px);
-    -ms-filter: blur(1px);
-    filter: blur(40px);
+body.modal-open .resultbg {
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(40px);
 }
+
 .top-buffer {
-  margin-top:100px;
+  margin-top: 100px;
 }
-.top-buffer-md{
+
+.top-buffer-md {
   margin-top: 50px;
 }
-.top-buffer-sm{
+
+.top-buffer-sm {
   margin-top: 50px;
 }
-.modal-body{
-    border-color: rgb(159, 147, 153);
-    border-width: 3px;
+
+.modal-body {
+  border-color: rgb(159, 147, 153);
+  border-width: 3px;
 }
-.page-title{
+
+.page-title {
   font-size: var(--font-size-fluid-2);
   color: #111;
 }
-body.modal-open .media-element{
-    -webkit-filter: blur(1px);
-    -moz-filter: blur(1px);
-    -o-filter: blur(1px);
-    -ms-filter: blur(1px);
-    filter: blur(40px);
+
+body.modal-open .media-element {
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(40px);
 }
+
 * {
   padding: 0;
   margin: 0;
@@ -172,7 +185,8 @@ body.modal-open .media-element{
     transform: rotate(calc(15deg * var(--i)));
   }
 }
-.blendbtn{
+
+.blendbtn {
   mix-blend-mode: luminosity;
 }
 

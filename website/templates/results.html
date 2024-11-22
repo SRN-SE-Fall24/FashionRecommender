@@ -32,15 +32,17 @@
     <p id="fav_msg" class="bg-success text-white text-center"></p>
 </div>
 
-<div class="media-scroller snaps-inline top-buffer">
+<div class="" style="display: grid; grid-template-columns: 50% 50%; gap: 10px; padding-bottom: 100px;">
     {% for idx, link in enumerate(ldata) %}
     <div class="media-element">
         <img src={{ link }} alt="" id="Myimg{{idx}}">
         <div class="btn-group" role="group" aria-label="buttonGroup">
             <button id="show-img" type="button" class="blendbtn btn btn-primary rounded m-3" data-toggle="modal"
                 data-target="#my-modal{{idx}}"><b>View</b></button>
-            <a class="nav-item nav-link nav-text buttonA" id="shop-link{{idx}}" href="/shopping-results?{{link}}"><b>Shop</b></a>
-            <button id="favourite{{idx}}" type="button" class="blendbtn btn btn-primary favourite rounded m-3"><b>Favourite</b></button>
+            <a class="nav-item nav-link nav-text buttonA" id="shop-link{{idx}}"
+                href="/shopping-results?{{link}}"><b>Shop</b></a>
+            <button id="favourite{{idx}}" type="button"
+                class="blendbtn btn btn-primary favourite rounded m-3"><b>Favourite</b></button>
         </div>
     </div>
     <div id="my-modal{{idx}}" class="modal fade" aria-labelledby="my-modalLabel" aria-hidden="true" tabindex="-1"
