@@ -23,9 +23,10 @@ $(document).ready(function () {
                 for (var i = 0; i < data["links"].length; i++) {
                     str += data["links"][i] + " || ";
                 }
+                window.sessionStorage.setItem('query', formData);
+                window.sessionStorage.setItem('colorPalettes', data["COLOR_PALETTES"]);
                 var redirectUrl = window.location.protocol + "//" + window.location.host + "/results?" + str;
                 location.href = redirectUrl;
-                window.sessionStorage.setItem('query', formData);
             },
             dataType: "json",
             contentType: "application/json"
