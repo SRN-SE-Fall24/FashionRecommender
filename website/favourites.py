@@ -27,6 +27,8 @@ payload = {
 @favouritesbp.route("/favourites", methods=["POST", "GET"])
 def favourites(userid=None):
     if request.method == "GET":
+        if userid == None:            
+            userid = session[contracts.SessionParameters.USERID]
         favourite_query = Favourite.query.filter_by(userid=int(userid))
 
         favourite_resp = favourite_query.all()

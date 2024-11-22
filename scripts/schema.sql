@@ -1,13 +1,11 @@
---- create the name of the database as fashion - user: fashion, password : fashion
-
-drop database fashion;
+drop database if exists fashion;
 create database fashion;
 use fashion;
 
-drop table user;
-drop table user_details;
-drop table preference;
-drop table recommendation;
+drop table if exists user;
+drop table if exists user_details;
+drop table if exists preference;
+drop table if exists recommendation;
 
 create table user(
     id int not null primary key AUTO_INCREMENT,
@@ -42,14 +40,14 @@ create table favourite (
 
 
 
-drop database fashion_test;
+drop database if exists fashion_test;
 create database fashion_test;
 use fashion_test;
 
-drop table user;
-drop table user_details;
-drop table preference;
-drop table recommendation;
+drop table if exists user;
+drop table if exists user_details;
+drop table if exists preference;
+drop table if exists recommendation;
 
 create table user(
     id int not null primary key AUTO_INCREMENT,
@@ -74,6 +72,6 @@ create table recommendation (
     primary key (userid),
     foreign key (userid) references user(id));
     
-    
+use fashion;
 select * from favourite;
 truncate table favourite;
