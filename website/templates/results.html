@@ -32,6 +32,26 @@
     <p id="fav_msg" class="bg-success text-white text-center"></p>
 </div>
 
+<div style="display: flex; column-gap: 5px; margin-bottom: 10px;">
+    <style>
+        .queryDiv {
+            background: #555;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        let query = JSON.parse(window.sessionStorage.getItem('query'));
+        if (query['culture'] !== '') document.writeln(`<div class="queryDiv">${query['culture']}</div>`);
+        if (query['gender'] !== '') document.writeln(`<div class="queryDiv">${query['gender']}</div>`);
+        if (query['ageGroup'] !== '') document.writeln(`<div class="queryDiv">${query['ageGroup']}</div>`);
+        if (query['occasion'] !== '') document.writeln(`<div class="queryDiv">${query['occasion']}</div>`);
+        if (query['dateTime'] !== '') document.writeln(`<div class="queryDiv">${query['dateTime']}</div>`);
+    </script>
+</div>
+
 <div class="" style="display: grid; grid-template-columns: 50% 50%; gap: 10px; padding-bottom: 100px;">
     {% for idx, link in enumerate(ldata) %}
     <div class="media-element">
