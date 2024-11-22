@@ -10,6 +10,10 @@ from flask import (
     session,
     url_for,
 )
+import google.generativeai as genai
+from projectsecrets.gemini_secret import GEMINI_API_KEY
+
+genai.configure(api_key=GEMINI_API_KEY)
 
 from . import contracts
 
@@ -40,8 +44,6 @@ def get_recommendations():
     ageGroup = ""
     city = ""
     userid = '1'
-
-    print(req_json_body)
 
     if contracts.SessionParameters.USERID not in session:
         return (
@@ -97,4 +99,21 @@ def get_recommendations():
     for link in links:
         recommendations[contracts.RecommendationContractResponse.LINKS].append(
             link)
+
+    model = genai.GenerativeModel("gemini-1.5-flash")
+    response = model.generate_content(f'''
+        You are a fashion recommender bot. 
+        Give 3 color palette suggestions with 5 colors each based on the following data:
+        Occasion: {occasion},
+        Culture: {culture},
+        Gender: {gender},
+        Age group: {ageGroup},
+        City: {city}
+        With each color specific clothing/accessory/item of that color.
+        Return the output in following format where there are 5 colors in each palette and each palette is sorted by color prominence:
+        [[[hexColor1,item1], [hexColor2,item2], [hexColor3,item3], [hexColor4,item4], [hexColor5,item5]], [...], [...]]
+        The above response should be directly parsable by JSON.parse
+        ''')
+    recommendations['COLOR_PALETTES'] = response.text
+
     return jsonify(recommendations), 200

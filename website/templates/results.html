@@ -32,6 +32,65 @@
     <p id="fav_msg" class="bg-success text-white text-center"></p>
 </div>
 
+<div style="display: flex; column-gap: 5px; margin-bottom: 10px;">
+    <style>
+        .queryDiv {
+            background: #555;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+
+        // Show the query
+        let query = JSON.parse(window.sessionStorage.getItem('query'));
+        if (query['culture'] !== '') document.writeln(`<div class="queryDiv">${query['culture']}</div>`);
+        if (query['gender'] !== '') document.writeln(`<div class="queryDiv">${query['gender']}</div>`);
+        if (query['ageGroup'] !== '') document.writeln(`<div class="queryDiv">${query['ageGroup']}</div>`);
+        if (query['occasion'] !== '') document.writeln(`<div class="queryDiv">${query['occasion']}</div>`);
+        if (query['dateTime'] !== '') document.writeln(`<div class="queryDiv">${query['dateTime']}</div>`);
+    </script>
+</div>
+
+<div style="margin-bottom: 60px;">
+    <style>
+        .paletteElement {
+            width: 100px;
+        }
+
+        .paletteColor {
+            height: 100px;
+            width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+        }
+
+        .paletteItem {
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+    <script>
+        // Show color palettes
+        let palettes = window.sessionStorage.getItem('colorPalettes');
+        palettes = JSON.parse(palettes.replace('```json', '').replace('```', ''));
+        for (let i = 0; i < palettes.length; i++) {
+            document.writeln(`<div style="margin-top:20px; font-size:14px; font-style:italic">Style ${i + 1}</div>`);
+            document.writeln(`<div style="display:flex;">`);
+            for (let data of palettes[i]) {
+                document.writeln(`<div class="paletteElement">
+                    <div class="paletteColor" style="background:${data[0]}"></div>
+                    <div class="paletteItem">${data[1]}</div>
+                    </div>`);
+            }
+            document.writeln(`</div>`);
+        }
+    </script>
+</div>
+
 <div class="" style="display: grid; grid-template-columns: 50% 50%; gap: 10px; padding-bottom: 100px;">
     {% for idx, link in enumerate(ldata) %}
     <div class="media-element">
