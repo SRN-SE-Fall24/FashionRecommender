@@ -1,28 +1,25 @@
 
 ## vogueX Fashion Recommender: Outfit Recommendation System
-[![Code Quality](https://github.com/systems-org/vogueX---Fashion-Recommender/actions/workflows/code-quality.yml/badge.svg)](https://github.com/systems-org/vogueX---Fashion-Recommender/actions)
 [![Black Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-[![Build Status](https://circleci.com/gh/mukunda-p/vogueX---Fashion-Recommender/tree/dev.svg?style=svg)](https://circleci.com/gh/mukunda-p/vogueX---Fashion-Recommender/tree/dev)
+[![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://github.com/SRN-SE-Fall24/FashionRecommender/blob/dev/README.md)
 
-[![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://github.com/mukunda-p/vogueX---Fashion-Recommender/blob/dev/README.md)
+<a href =https://github.com/SRN-SE-Fall24/FashionRecommender/blob/dev/LICENCE.md><img src=https://img.shields.io/github/license/SRN-SE-Fall24/FashionRecommender></a>
 
-<a href =https://github.com/mukunda-p/vogueX---Fashion-Recommender/blob/dev/LICENCE.md><img src=https://img.shields.io/github/license/mukunda-p/vogueX---Fashion-Recommender></a>
+[![Github Repo size in bytes](https://img.shields.io/github/languages/code-size/SRN-SE-Fall24/FashionRecommender)](https://github.com/SRN-SE-Fall24/FashionRecommender)
 
-[![Github Repo size in bytes](https://img.shields.io/github/languages/code-size/mukunda-p/vogueX---Fashion-Recommender)](https://github.com/mukunda-p/vogueX---Fashion-Recommender)
-
-[![codecov](https://codecov.io/gh/mukunda-p/vogueX---Fashion-Recommender/branch/dev/graph/badge.svg?token=O08MSPU0WT)](https://codecov.io/gh/mukunda-p/vogueX---Fashion-Recommender)
+[![codecov](https://codecov.io/gh/SRN-SE-Fall24/FashionRecommender/branch/dev/graph/badge.svg?token=O08MSPU0WT)](https://codecov.io/gh/SRN-SE-Fall24/FashionRecommender)
 
 [![DOI](https://zenodo.org/badge/568223471.svg)](https://zenodo.org/badge/latestdoi/568223471)
 
 
-[![GitHub issues](https://img.shields.io/github/issues/mukunda-p/vogueX---Fashion-Recommender)](https://github.com/mukunda-p/vogueX---Fashion-Recommender/issues?q=is%3Aopen)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed/mukunda-p/vogueX---Fashion-Recommender)](https://github.com/mukunda-p/vogueX---Fashion-Recommender/issues?q=is%3Aissue+is%3Aclosed)
-[![Github pull requests](https://img.shields.io/github/issues-pr/mukunda-p/vogueX---Fashion-Recommender)](https://github.com/mukunda-p/vogueX---Fashion-Recommender/pulls)
-[![Github closed pull requests](https://img.shields.io/github/issues-pr-closed/mukunda-p/vogueX---Fashion-Recommender)](https://github.com/mukunda-p/vogueX---Fashion-Recommender/pulls?q=is%3Apr+is%3Aclosed)
+[![GitHub issues](https://img.shields.io/github/issues/SRN-SE-Fall24/FashionRecommender)](https://github.com/SRN-SE-Fall24/FashionRecommender/issues?q=is%3Aopen)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/SRN-SE-Fall24/FashionRecommender)](https://github.com/SRN-SE-Fall24/FashionRecommender/issues?q=is%3Aissue+is%3Aclosed)
+[![Github pull requests](https://img.shields.io/github/issues-pr/SRN-SE-Fall24/FashionRecommender)](https://github.com/SRN-SE-Fall24/FashionRecommender/pulls)
+[![Github closed pull requests](https://img.shields.io/github/issues-pr-closed/SRN-SE-Fall24/FashionRecommender)](https://github.com/SRN-SE-Fall24/FashionRecommender/pulls?q=is%3Apr+is%3Aclosed)
 
-[![github workflow](https://github.com/mukunda-p/vogueX---Fashion-Recommender/actions/workflows/style_checker.yml/badge.svg)](https://github.com/mukunda-p/vogueX---Fashion-Recommender/actions/workflows/style_checker.yml)
-[![github workflow](https://github.com/mukunda-p/vogueX---Fashion-Recommender/actions/workflows/main.yml/badge.svg)](https://github.com/mukunda-p/vogueX---Fashion-Recommender/actions/workflows/main.yml)
+[![github workflow](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/style_checker.yml/badge.svg)](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/style_checker.yml)
+[![github workflow](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/main.yml/badge.svg)](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/main.yml)
 
 ## 💎Description</br>
 Has it ever happened that you were all set with the perfect dress for your big day but you forgot to take a rain check? 
