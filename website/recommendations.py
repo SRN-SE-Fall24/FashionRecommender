@@ -134,15 +134,12 @@ def style_match():
 
         myfile = genai.upload_file(Path(temp_file_path))
 
-        prompt = (
-            f"{myfile}\n\n"
-            "Based on the uploaded image, can you suggest clothing items or outfit recommendations in JSON format? "
-            "Include the following keys:\n"
-            "- 'recommended_outfits': A list of outfit ideas with their names and descriptions.\n"
-            "- 'style_tips': Any additional styling tips or details."
-        )
+        prompt = '''Based on the uploaded image, can you suggest clothing items or outfit recommendations in JSON format?
+            Include the following keys:
+            - 'recommended_outfits': A list of outfit ideas with their names and descriptions.
+            - 'style_tips': Any additional styling tips or details.'''
 
-        result = model.generate_content([prompt])
+        result = model.generate_content([myfile, prompt])
         response = result.text
 
         os.remove(temp_file_path)
