@@ -11,8 +11,6 @@ $(document).ready(function () {
         var cityValue = formattedFormData["city"]
         localStorage.setItem("occasionVal", occasionValue);
         localStorage.setItem("cityVal", cityValue);
-        // console.log(occasionVal)
-        // console.log(cityVal)
         e.preventDefault();
         $.ajax({
             type: "POST",
@@ -32,16 +30,6 @@ $(document).ready(function () {
             contentType: "application/json"
         });
         formData = JSON.stringify(formattedFormData)
-        // $.ajax({
-        //     type:"POST",
-        //     url:"/favourites",
-        //     data:formData,
-        //     success:function(){
-        //         console.log("success");
-        //     },
-        //     dataType: "json",
-        //     contentType : "application/json"
-        // })
     });
     $(".recoButton1").click(function (e) {
         var loader = document.getElementById('center')
@@ -49,3 +37,66 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $("#upload-button").click(function (e) {
+        e.preventDefault(); // Prevent form submission
+        var fileInput = document.getElementById("clothing-image");
+
+        // Ensure a file is selected
+        if (!fileInput.files[0]) {
+            alert("Please select an image before uploading.");
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append("clothingImage", fileInput.files[0]);
+
+        // Perform AJAX request to /style_match
+        $.ajax({
+            type: "POST",
+            url: "/style_match",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                console.log(response);
+            
+                try {
+                    var recommendationsStr = response.recommendations.replace(/```json|\n```/g, '');
+                    var recommendations = JSON.parse(recommendationsStr);
+            
+                    if (Array.isArray(recommendations.recommended_outfits)) {
+                        var outfitsHtml = "<hr><h4>Recommended Outfits</h4><ul>";
+                        recommendations.recommended_outfits.forEach(function (outfit) {
+                            outfitsHtml += `<li><strong>${outfit.name}:</strong> ${outfit.description}</li>`;
+                        });
+                        outfitsHtml += "</ul>";
+                        $("#outfit-suggestions").html(outfitsHtml);
+                    } else {
+                        $("#outfit-suggestions").html("<p>No recommended outfits found.</p>");
+                    }
+            
+                    if (Array.isArray(recommendations.style_tips)) {
+                        $("#style-tips").html(`<h3>Style Tips: </h3><ul>${recommendations.style_tips.map(tip => `<li>${tip}</li>`).join('')}</ul>`);
+                    } else {
+                        $("#style-tips").html("<p>No style tips available.</p>");
+                    }
+            
+                    $("#recommendations-section").show();
+
+                    document.getElementById("recommendations-section").scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                } catch (error) {
+                    console.error("Error parsing recommendations:", error);
+                    alert("There was an error processing the recommendation data.");
+                }
+            },
+            error: function (error) {
+                console.error("Error:", error);
+                alert("An error occurred while uploading the image.");
+            },
+        });
+    });
+});

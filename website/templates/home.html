@@ -20,9 +20,6 @@
                     <label>Culture: </label><input type="text" class="form-control hover-zoom" id="culture"
                         name="culture" />
                 </div>
-                <!-- <div class="col-2">
-                <label>City: </label><input type="text" class="form-control hover-zoom" id="city" name="city" value={{current_user.city}} />
-            </div> -->
                 <div class="col-2">
                     <label for="gender">Gender</label>
                     <select class="custom-select" id="inputGroupSelect01" id="gender" name="gender"
@@ -72,5 +69,32 @@
         </div>
 
     </form>
+
+    <section id="upload-section"
+        style="margin: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+        <h2 style="text-align: center; font-family: Arial, sans-serif; color: #333;">Upload Your Clothing Image</h2>
+        <p style="text-align: center; font-family: Arial, sans-serif; color: #555;">
+            Upload an image of your clothing item, and we’ll suggest matching outfits for it.
+        </p>
+        <form id="upload-form" style="display: flex; flex-direction: column; align-items: center;">
+            <label for="clothing-image" style="font-family: Arial, sans-serif; color: #333; margin-bottom: 10px;">
+                Select an image:
+            </label>
+            <input type="file" id="clothing-image" name="clothingImage" accept="image/*"
+                style="margin-bottom: 15px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+            <button type="button" id="upload-button"
+                style="padding: 10px 20px; border: none; background-color: #007bff; color: white; font-family: Arial, sans-serif; border-radius: 4px; cursor: pointer;">
+                Upload & Get Suggestions
+            </button>
+        </form>
+
+        <section id="recommendations-section" style="display: none;">
+            <h2>Fashion Recommendations</h2>
+            <div id="outfit-suggestions"></div>
+            <div id="color-palette"></div>
+            <div id="confidence-score"></div>
+            <div id="style-tips"></div>
+        </section>
+    </section>
 </div>
 {% endblock %}

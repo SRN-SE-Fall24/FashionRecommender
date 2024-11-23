@@ -1,4 +1,5 @@
 import functools
+import os
 from flask import (
     Blueprint,
     flash,
@@ -14,12 +15,18 @@ import google.generativeai as genai
 from projectsecrets.gemini_secret import GEMINI_API_KEY
 
 genai.configure(api_key=GEMINI_API_KEY)
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 from . import contracts
 
 from werkzeug.security import check_password_hash, generate_password_hash
 from . import models
 from datetime import datetime
+from werkzeug.utils import secure_filename
+from pathlib import Path
+
+UPLOAD_FOLDER = "uploads"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 recommendationsbp = Blueprint("recommendationsbp", __name__, url_prefix="/")
 
@@ -65,12 +72,6 @@ def get_recommendations():
     # take from the user table
     city = user.city
 
-    #if contracts.RecommendationContractRequest.DATE_TIME_KEY in req_json_body:
-    #    dateTimeInput = req_json_body[contracts.RecommendationContractRequest.DATE_TIME_KEY]
-    #    dateInput = str(dateTimeInput).split("T")[0]
-    #    timeInput = str(dateTimeInput).split("T")[1]
-
-    #else:
     dateInput = datetime.today().strftime("%Y-%m-%d")
     timeInput = datetime.now()
 
@@ -100,7 +101,6 @@ def get_recommendations():
         recommendations[contracts.RecommendationContractResponse.LINKS].append(
             link)
 
-    model = genai.GenerativeModel("gemini-1.5-flash")
     response = model.generate_content(f'''
         You are a fashion recommender bot. 
         Give 3 color palette suggestions with 5 colors each based on the following data:
@@ -117,3 +117,37 @@ def get_recommendations():
     recommendations['COLOR_PALETTES'] = response.text
 
     return jsonify(recommendations), 200
+
+@recommendationsbp.route("/style_match", methods=["POST"])
+def style_match():
+    try:
+        if "clothingImage" not in request.files:
+            return jsonify({"error": "No file part in the request"}), 400
+
+        clothing_image = request.files["clothingImage"]
+
+        if clothing_image.filename == "":
+            return jsonify({"error": "No file selected"}), 400
+
+        temp_file_path = os.path.join(UPLOAD_FOLDER, clothing_image.filename)
+        clothing_image.save(temp_file_path)
+
+        myfile = genai.upload_file(Path(temp_file_path))
+
+        prompt = (
+            f"{myfile}\n\n"
+            "Based on the uploaded image, can you suggest clothing items or outfit recommendations in JSON format? "
+            "Include the following keys:\n"
+            "- 'recommended_outfits': A list of outfit ideas with their names and descriptions.\n"
+            "- 'style_tips': Any additional styling tips or details."
+        )
+
+        result = model.generate_content([prompt])
+        response = result.text
+
+        os.remove(temp_file_path)
+
+        return jsonify({"recommendations": response}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
