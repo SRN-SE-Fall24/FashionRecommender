@@ -21,7 +21,7 @@ jobs:
         WEATHER_KEY: ${{ secrets.WEATHER_KEY }}
       run: |
           pip install -r requirements.txt
-          pytest --cov=./
+          pytest --cov=tests
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4
       with:
