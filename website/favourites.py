@@ -23,6 +23,7 @@ payload = {
 }
 """
 
+
 @favouritesbp.route("/favourites", methods=["POST", "GET"])
 def favourites(userid=None):
     if request.method == "GET":
