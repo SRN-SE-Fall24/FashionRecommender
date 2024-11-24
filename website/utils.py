@@ -1,7 +1,10 @@
 from google_images_search import GoogleImagesSearch
 import requests
-from projectsecrets.weather_secret import WEATHER_KEY
+import os
 
+WEATHER_KEY = os.getenv('WEATHER_KEY')
+if not WEATHER_KEY:
+    from projectsecrets.weather_secret import WEATHER_KEY
 
 class WeatherAPI:
     def __init__(self) -> None:
