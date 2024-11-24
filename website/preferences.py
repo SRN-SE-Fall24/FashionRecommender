@@ -50,37 +50,6 @@ def get_default_preferences():
 
 @preferencesbp.route("/preferences", methods=["GET"])
 def get_preferences():
-    """
-    response :
-
-    {
-        "
-    }
-
-    """
-    preferences = {
-        "preferences": {
-            "formal": [
-                {
-                    "type": "suit",
-                    "color": "black",
-                }
-            ],
-            "beach": [
-                {
-                    "type": "tshirt",
-                    "color": "blue",
-                }
-            ],
-            "date": [
-                {
-                    "type": "shirt",
-                    "color": "navy-blue",
-                }
-            ],
-        }
-    }
-
     if contracts.SessionParameters.USERID not in session:
         return (
             jsonify(
@@ -93,9 +62,8 @@ def get_preferences():
         )
     # query the preferences table and check if preferences have been saved or not
     userid = session[contracts.SessionParameters.USERID]
-    preferencesObj = models.Preference.query.filter_by(
-        userid=int(userid)).first()
-        
+    preferencesObj = models.Preference.query.filter_by(userid=int(userid)).first()
+    
     if not preferencesObj:
         return (
             jsonify(

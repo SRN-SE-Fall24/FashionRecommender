@@ -11,14 +11,14 @@ auth = Blueprint("auth", __name__)
 
 # Login authentication module that takes user email and password as input and validates against the database before giving authorization to the page
 @auth.route("/login", methods=["GET", "POST"])
-def login():    
+def login():
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
 
         user = User.query.filter_by(email=email).first()
         if user:
-            if hashlib.sha256(password.encode()).hexdigest() == user.password:#check_password_hash(user.password, password):
+            if hashlib.sha256(password.encode()).hexdigest() == user.password:  # check_password_hash(user.password, password):
                 flash("Logged in successfully!", category="success")
                 session[contracts.SessionParameters.USERID] = user.get_id()
                 login_user(user, remember=True)
@@ -77,7 +77,7 @@ def sign_up():
                 city=city,
                 age=age,
                 phone_number=phone_number,
-                password=hashlib.sha256(password1.encode()).hexdigest()#generate_password_hash(password1, method="sha256"),
+                password=hashlib.sha256(password1.encode()).hexdigest()  # generate_password_hash(password1, method="sha256"),
             )
             db.session.add(new_user)
             db.session.commit()

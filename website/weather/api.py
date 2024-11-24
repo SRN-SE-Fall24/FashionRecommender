@@ -28,7 +28,7 @@ class WeatherAPI:
         return ""
 
     def getFutureWeather(self, date=None, city=None, time=None):
-        url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{City}/{Date}?key={API_KEY2}".format(
+        url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{city}/{Date}?key={API_KEY2}".format(
             city=city, Date=date, API_KEY2=self.config.API_KEY2
         )
         response = requests.request("GET", url, headers={}, data={})

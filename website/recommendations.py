@@ -12,14 +12,6 @@ from flask import (
     url_for,
 )
 import google.generativeai as genai
-
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
-if not GEMINI_API_KEY:
-    from projectsecrets.gemini_secret import GEMINI_API_KEY
-
-genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel("gemini-1.5-flash")
-
 from . import contracts
 
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -27,6 +19,13 @@ from . import models
 from datetime import datetime
 from werkzeug.utils import secure_filename
 from pathlib import Path
+
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+if not GEMINI_API_KEY:
+    from projectsecrets.gemini_secret import GEMINI_API_KEY
+
+genai.configure(api_key=GEMINI_API_KEY)
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -105,7 +104,7 @@ def get_recommendations():
             link)
 
     response = model.generate_content(f'''
-        You are a fashion recommender bot. 
+        You are a fashion recommender bot.
         Give 3 color palette suggestions with 5 colors each based on the following data:
         Occasion: {occasion},
         Culture: {culture},
@@ -120,6 +119,7 @@ def get_recommendations():
     recommendations['COLOR_PALETTES'] = response.text
 
     return jsonify(recommendations), 200
+
 
 @recommendationsbp.route("/style_match", methods=["POST"])
 def style_match():
