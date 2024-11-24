@@ -8,7 +8,7 @@
 
 [![Github Repo size in bytes](https://img.shields.io/github/languages/code-size/SRN-SE-Fall24/FashionRecommender)](https://github.com/SRN-SE-Fall24/FashionRecommender)
 
-[![codecov](https://codecov.io/gh/SRN-SE-Fall24/FashionRecommender/graph/badge.svg?token=PDVKSB4BAN)](https://codecov.io/gh/SRN-SE-Fall24/FashionRecommender)
+[![codecov](https://codecov.io/gh/SRN-SE-Fall24/FashionRecommender/branch/master/graph/badge.svg?token=PDVKSB4BAN)](https://codecov.io/gh/SRN-SE-Fall24/FashionRecommender)
 
 [![DOI](https://zenodo.org/badge/890415506.svg)](https://doi.org/10.5281/zenodo.14211776)
 
