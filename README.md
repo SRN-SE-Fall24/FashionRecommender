@@ -10,7 +10,7 @@
 
 [![codecov](https://codecov.io/gh/SRN-SE-Fall24/FashionRecommender/branch/dev/graph/badge.svg?token=O08MSPU0WT)](https://codecov.io/gh/SRN-SE-Fall24/FashionRecommender)
 
-[![DOI](https://zenodo.org/badge/568223471.svg)](https://zenodo.org/badge/latestdoi/568223471)
+[![DOI](https://zenodo.org/badge/890415506.svg)](https://doi.org/10.5281/zenodo.14211776)
 
 
 [![GitHub issues](https://img.shields.io/github/issues/SRN-SE-Fall24/FashionRecommender)](https://github.com/SRN-SE-Fall24/FashionRecommender/issues?q=is%3Aopen)
