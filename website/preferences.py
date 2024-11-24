@@ -80,7 +80,6 @@ def get_preferences():
             ],
         }
     }
-    print(preferences)
 
     if contracts.SessionParameters.USERID not in session:
         return (
@@ -96,6 +95,7 @@ def get_preferences():
     userid = session[contracts.SessionParameters.USERID]
     preferencesObj = models.Preference.query.filter_by(
         userid=int(userid)).first()
+        
     if not preferencesObj:
         return (
             jsonify(

@@ -1,46 +1,17 @@
 from google_images_search import GoogleImagesSearch
 import requests
+from projectsecrets.weather_secret import WEATHER_KEY
 
-
-class WeatherConfig:
-    def __init__(self):
-        self.API_KEY = "424ca7dcc9a5422e811220113222311"
-
-
-# class WeatherAPI:
-#     def __init__(self) -> None:
-#         self.config = WeatherConfig()
-
-#     def getCurrentWeather(self, latitude=None, longitude=None, city=None):
-#         url = "http://api.weatherapi.com/v1/current.json?key={API_KEY}&q={city}&aqi=no".format(
-#             city=city, API_KEY=self.config.API_KEY
-#         )
-#         response = requests.request("GET", url, headers={}, data={})
-#         if response.status_code != 200:
-#             raise Exception(
-#                 "Weather API failed : response code : {code}".format(
-#                     code=response.status_code
-#                 )
-#             )
-#         jsonResponse = response.json()
-#         if (
-#             "current" in jsonResponse
-#             and "condition" in jsonResponse["current"]
-#             and "text" in jsonResponse["current"]["condition"]
-#         ):
-#             return jsonResponse["current"]["condition"]["text"]
-#         return ""
 
 class WeatherAPI:
     def __init__(self) -> None:
-        self.config = WeatherConfig()
+        pass
+        
     """
     Function to fetch current weather forecast using city from external weather API
     """
     def getCurrentWeather(self, latitude=None, longitude=None, city=None):
-        url = "http://api.weatherapi.com/v1/current.json?key={API_KEY1}&q={city}&aqi=no".format(
-            city=city, API_KEY1=self.config.API_KEY
-        )
+        url = f'http://api.weatherapi.com/v1/current.json?key={WEATHER_KEY}&q={city}&aqi=no'
         response = requests.request("GET", url, headers={}, data={})
         if response.status_code != 200:
             raise Exception(
