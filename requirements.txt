@@ -48,5 +48,5 @@ uritemplate==4.1.1
 urllib3==1.26.12
 Werkzeug==2.2.2
 zipp==3.8.1
-Google-Images-Search
+Google-Images-Search==1.4.7
 google-generativeai
