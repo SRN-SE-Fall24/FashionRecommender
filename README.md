@@ -1,13 +1,10 @@
 
 ## vogueX Fashion Recommender: Outfit Recommendation System
 [![Black Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-
 [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://github.com/SRN-SE-Fall24/FashionRecommender/blob/dev/README.md)
-
 <a href =https://github.com/SRN-SE-Fall24/FashionRecommender/blob/dev/LICENCE.md><img src=https://img.shields.io/github/license/SRN-SE-Fall24/FashionRecommender></a>
 
 [![Github Repo size in bytes](https://img.shields.io/github/languages/code-size/SRN-SE-Fall24/FashionRecommender)](https://github.com/SRN-SE-Fall24/FashionRecommender)
-
 [![codecov](https://codecov.io/gh/SRN-SE-Fall24/FashionRecommender/branch/master/graph/badge.svg?token=PDVKSB4BAN)](https://codecov.io/gh/SRN-SE-Fall24/FashionRecommender)
 
 [![DOI](https://zenodo.org/badge/890415506.svg)](https://doi.org/10.5281/zenodo.14211776)
@@ -20,6 +17,11 @@
 
 [![github workflow](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/style_checker.yml/badge.svg)](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/style_checker.yml)
 [![github workflow](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/main.yml/badge.svg)](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/main.yml)
+
+![GitHub language count](https://img.shields.io/github/languages/count/SRN-SE-Fall24/FashionRecommender)
+<!-- Start marker for language badge generation -->
+<!-- End marker for language badge generation -->
+
 
 ## 💎Description</br>
 Has it ever happened that you were all set with the perfect dress for your big day but you forgot to take a rain check? 
@@ -50,29 +52,34 @@ We have “A style for every story” so let it be known to the world :)
 
 ## 1. Prerequisites 
 
-Guides on how to install:
-  * [Git Installation Guide](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-  * Install python virtual environment if needed, if you do not want to hurt the python libraries on your system. 
-  for Linux:
-  
-  `sudo apt-get install python3-virtualenv`
-  
-  create virtualenv:
-  
-  `virtualenv venv` 
+Install the requirements using <br>
+pip install -r requirements.txt <br><br>
+
+In the project root folder,  <br>
+Create a module: projectsecrets  <br>
+ie. a folder named projectsecretes with a \_\_init\_\_.py inside it <br>
+
+In this module, create files for secret variables <br>
+1. For Gemini API <br>
+   gemini_secret.py <br>
+   GEMINI_API_KEY="YOUR_API_KEY" <br>
+2. For Weather API <br>
+   weather_secret.py <br>
+   WEATHER_KEY="YOUR_API_KEY" <br>
+
 
 ## 2. Deploying
 
 First, clone the repository:
 
 
-$ git clone git@github.com:mukunda-p/vogueX---Fashion-Recommender.git
+$ git clone https://github.com/SRN-SE-Fall24/FashionRecommender
 
 
 Change working directory to the repository:
 
 
-$ cd vogueX---Fashion-Recommender
+$ cd Fashion-Recommender
 
 
 We have made a python script to run the application.
@@ -88,15 +95,13 @@ http://localhost:5000/
 
 
 ## Contributors:
-- Kalyan Karnati (kkarnat)
-- Mukund Varma Pericherla (mperich)
-- Pranavi Sharma Sanganabhatla (psangan)
-- Saketh Vangala (svangal)
-- Srihitha Reddy Kaalam (skaalam)
+- Sharmeen Momin (smomin)
+- Rutvik Kulkarni (rvkulkar)
+- Nishad Tardalkar (ntardal)
 
 
 
 ## License
-[MIT License](https://github.com/pncnmnp/SE21-project/blob/Developer/LICENSE.md)
+[MIT License](https://github.com/SRN-SE-Fall24/FashionRecommender/blob/master/LICENSE.md)
 
 
