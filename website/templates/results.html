@@ -32,7 +32,7 @@
     <p id="fav_msg" class="bg-success text-white text-center"></p>
 </div>
 
-<div style="display: flex; column-gap: 5px; margin-bottom: 10px;">
+<div style="display: flex; column-gap: 5px; margin-bottom: 10px; justify-content: center; margin-top: 30px;">
     <style>
         .queryDiv {
             background: #555;
@@ -54,7 +54,10 @@
     </script>
 </div>
 
-<div style="margin-bottom: 60px;">
+<div style="margin-top: 50px; width: 100%; text-align: center; font-size: 20px; font-weight: 500;">Color Palettes</div>
+<div style="width: 100%; text-align: center; font-size: 18px; font-weight: 300;">Some suggestions on what clothing to
+    wear of what color</div>
+<div style="margin-top: 30px; margin-bottom: 60px; display:grid; grid-template-columns: 50% 50%; row-gap: 20px;">
     <style>
         .paletteElement {
             width: 100px;
@@ -78,7 +81,7 @@
         let palettes = window.sessionStorage.getItem('colorPalettes');
         palettes = JSON.parse(palettes.replace('```json', '').replace('```', ''));
         for (let i = 0; i < palettes.length; i++) {
-            document.writeln(`<div style="margin-top:20px; font-size:14px; font-style:italic">Style ${i + 1}</div>`);
+            document.writeln(`<div style="width:100%; display:flex; justify-content:center;">`);
             document.writeln(`<div style="display:flex;">`);
             for (let data of palettes[i]) {
                 document.writeln(`<div class="paletteElement">
@@ -86,7 +89,7 @@
                     <div class="paletteItem">${data[1]}</div>
                     </div>`);
             }
-            document.writeln(`</div>`);
+            document.writeln(`</div></div>`);
         }
     </script>
 </div>

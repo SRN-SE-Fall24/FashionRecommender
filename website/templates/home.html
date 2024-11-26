@@ -21,6 +21,10 @@
                         name="culture" />
                 </div>
                 <div class="col-2">
+                    <label>City: </label><input type="text" class="form-control hover-zoom" id="city"
+                        name="city" />
+                </div>
+                <div class="col-2">
                     <label for="gender">Gender</label>
                     <select class="custom-select" id="inputGroupSelect01" id="gender" name="gender"
                         value={{current_user.gender}}>
@@ -74,7 +78,7 @@
         style="margin: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
         <h2 style="text-align: center; font-family: Arial, sans-serif; color: #333;">Upload Your Clothing Image</h2>
         <p style="text-align: center; font-family: Arial, sans-serif; color: #555;">
-            Upload an image of your clothing item, and we’ll suggest matching outfits for it.
+            Upload an image of your clothing item, and we'll suggest matching outfits for it.
         </p>
         <form id="upload-form" style="display: flex; flex-direction: column; align-items: center;">
             <label for="clothing-image" style="font-family: Arial, sans-serif; color: #333; margin-bottom: 10px;">
