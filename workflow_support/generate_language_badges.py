@@ -27,7 +27,7 @@ if response.status_code == 200:
         badges.append(f'![{language}]({badge_url})')
 
     # Read the current README.md file
-    with open('README.md', 'r') as readme_file:
+    with open('README.md', 'r', encoding='utf-8', errors='replace') as readme_file:
         readme_content = readme_file.read()
 
     # Update the README with the new badges
@@ -35,10 +35,14 @@ if response.status_code == 200:
     #<!-- End marker for language badge generation -->
     marker1 = re.escape('<!-- Start marker for language badge generation -->')
     marker2 = re.escape('<!-- End marker for language badge generation -->')
-    updated_readme_content = re.sub(rf'{marker1}.*?{marker2}', f'{marker1}\n{'\n'.join(badges)}\n{marker2}', readme_content, flags=re.DOTALL)
-
+    updated_readme_content = re.sub(
+        rf'{marker1}.*?{marker2}', 
+        '<!-- Start marker for language badge generation -->' + '\n' + '\n'.join(badges) + '\n' + '<!-- End marker for language badge generation -->', 
+        readme_content, 
+        flags=re.DOTALL)
+    
     # Write the updated content back to the README.md file
-    with open('README.md', 'w') as readme_file:
+    with open('README.md', 'w', errors='replace') as readme_file:
         readme_file.write(updated_readme_content)
 
 else:
