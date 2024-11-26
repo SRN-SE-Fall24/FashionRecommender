@@ -140,6 +140,7 @@ def style_match():
         prompt = '''Based on the uploaded image, can you suggest clothing items or outfit recommendations in JSON format?
             Include the following keys:
             - 'recommended_outfits': A list of outfit ideas with their names and descriptions.
+            - 'accessories': Suggested matching accessories with their types and color schemes.
             - 'style_tips': Any additional styling tips or details.'''
 
         result = model.generate_content([myfile, prompt])
