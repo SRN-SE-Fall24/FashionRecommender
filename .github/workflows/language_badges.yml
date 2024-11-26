@@ -1,8 +1,6 @@
 name: Update Language Badges
 
-on: 
-  push:
-    branches: [ "main" ]
+on: push
 
 permissions:
   contents: write
