@@ -59,7 +59,6 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
             
                 try {
                     var recommendationsStr = response.recommendations.replace(/```json|\n```/g, '');
