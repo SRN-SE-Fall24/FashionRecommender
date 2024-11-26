@@ -1,6 +1,11 @@
 name: Update Language Badges
 
-on: push
+on: 
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
 
 jobs:
   update-badges:
@@ -29,9 +34,11 @@ jobs:
 
       # Commit and push the updated README
       - name: Commit and push changes
-        uses: EndBug/add-and-commit@v7
-        with:
-          author_name: "GitHub Actions"
-          author_email: "github-actions[bot]@users.noreply.github.com"
-          message: "Update language badges in README"
-          push: true
+        run: |
+          git add .
+          if git diff --cached --quiet; then
+            echo ""
+          else
+            git commit -m 'updating language badges'
+            git push
+          fi
