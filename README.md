@@ -88,15 +88,13 @@ http://localhost:5000/
 
 
 ## Contributors:
-- Kalyan Karnati (kkarnat)
-- Mukund Varma Pericherla (mperich)
-- Pranavi Sharma Sanganabhatla (psangan)
-- Saketh Vangala (svangal)
-- Srihitha Reddy Kaalam (skaalam)
+- Sharmeen Momin (smomin)
+- Rutvik Kulkarni (rvkulkar)
+- Nishad Tardalkar (ntardal)
 
 
 
 ## License
-[MIT License](https://github.com/pncnmnp/SE21-project/blob/Developer/LICENSE.md)
+[MIT License](https://github.com/SRN-SE-Fall24/FashionRecommender/blob/master/LICENSE.md)
 
 
