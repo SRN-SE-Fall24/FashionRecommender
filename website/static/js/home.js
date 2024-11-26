@@ -80,6 +80,18 @@ $(document).ready(function () {
                     } else {
                         $("#style-tips").html("<p>No style tips available.</p>");
                     }
+
+                    if (Array.isArray(recommendations.accessories)) {
+
+                        var accessoriesHtml = "<hr><h4>Accesories:</h4><ul>";
+                        recommendations.accessories.forEach(function (accessory) {
+                            accessoriesHtml += `<li><strong>${accessory.type}:</strong> ${accessory.color_scheme}</li>`;
+                        });
+                        accessoriesHtml += "</ul>";
+                        $("#accessories-suggestions").html(accessoriesHtml);
+                    } else {
+                        $("#accessories-suggestions").html("<p>No accessories found.</p>");
+                    }
             
                     $("#recommendations-section").show();
 
