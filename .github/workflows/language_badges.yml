@@ -25,7 +25,7 @@ jobs:
       # Run the script to generate badge URLs
       - name: Generate and Update Badges
         run: |
-          python generate_language_badges.py
+          python workflow_support/generate_language_badges.py
 
       # Commit and push the updated README
       - name: Commit and push changes
