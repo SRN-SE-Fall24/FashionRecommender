@@ -1,13 +1,10 @@
 
 ## vogueX Fashion Recommender: Outfit Recommendation System
 [![Black Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-
 [![Documentation Status](https://readthedocs.org/projects/ansicolortags/badge/?version=latest)](https://github.com/SRN-SE-Fall24/FashionRecommender/blob/dev/README.md)
-
 <a href =https://github.com/SRN-SE-Fall24/FashionRecommender/blob/dev/LICENCE.md><img src=https://img.shields.io/github/license/SRN-SE-Fall24/FashionRecommender></a>
 
 [![Github Repo size in bytes](https://img.shields.io/github/languages/code-size/SRN-SE-Fall24/FashionRecommender)](https://github.com/SRN-SE-Fall24/FashionRecommender)
-
 [![codecov](https://codecov.io/gh/SRN-SE-Fall24/FashionRecommender/branch/master/graph/badge.svg?token=PDVKSB4BAN)](https://codecov.io/gh/SRN-SE-Fall24/FashionRecommender)
 
 [![DOI](https://zenodo.org/badge/890415506.svg)](https://doi.org/10.5281/zenodo.14211776)
@@ -20,6 +17,9 @@
 
 [![github workflow](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/style_checker.yml/badge.svg)](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/style_checker.yml)
 [![github workflow](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/main.yml/badge.svg)](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/main.yml)
+
+![GitHub language count](https://img.shields.io/github/languages/count/SRN-SE-Fall24/FashionRecommender)
+
 
 ## 💎Description</br>
 Has it ever happened that you were all set with the perfect dress for your big day but you forgot to take a rain check? 
