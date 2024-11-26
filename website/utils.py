@@ -68,7 +68,7 @@ class QueryBuilder:
         for q in queries:
             return_query_string += q + " "
 
-        return "Suggested " + culture + " outfits for " + return_query_string
+        return "Suggest " + culture + " outfits for " + return_query_string
 
 
 class SearchImages:
