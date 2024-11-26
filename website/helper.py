@@ -1,5 +1,3 @@
-# from geopy.geocoders import Nominatim
-
 import json
 
 from . import models
@@ -10,9 +8,7 @@ default_preferences = {
     "female": ["blue shirt", "black pant"],
 }
 
-
 # module to write helper functions for APIs
-
 
 class PreferencesHelper:
     def givePreferences(userid, occasion):
@@ -28,14 +24,8 @@ class PreferencesHelper:
 
 class WeatherHelper:
     def __init__(self) -> None:
-        # self.geolocator = Nominatim(user_agent="Your_Name")
         self.weatherAPI = utils.WeatherAPI()
 
-    # def giveLocation(self, userid, city = None):
-    #     # if city is none query the profile from the database and see if there is a city.
-    #     # if city is not given chill
-    #     location = self.geolocator.geocode(city)
-    #     return (location.longitude, location.latitude)
 
     def getWeather(self, city=None, date=None, time=None):
         # coordinates = self.giveLocation(city)
@@ -46,11 +36,6 @@ class WeatherHelper:
             weather = self.weatherAPI.getCurrentWeather(city=city)
         except:
             weather = "clear sky"
-            #
-        # if date == today:
-        #     weather = self.weatherAPI.getCurrentWeather(city=city)
-        # else:
-        #     weather = self.weatherAPI.getFutureWeather(city=city, date=date, time=time)
         return weather
 
 
@@ -65,18 +50,11 @@ class RecommendationHelper:
         print(preferences)
         query_keywords = []
         weather = self.weatherHelper.getWeather(city, date, time)
-        # if not preferences:
-        #     query_keywords.append(gender)
-        # else:
-        #     for pref in preferences:
-        #         query_keywords.append(pref["color"] + " " + pref["type"])
-        # if not occasion:
 
-        #     query_keywords.append(occasion)
         if gender != "":
             query_keywords.append(" gender " + gender)
 
-        if not ageGroup:
+        if ageGroup:
             query_keywords.append(" for " + ageGroup)
 
         if not occasion:
