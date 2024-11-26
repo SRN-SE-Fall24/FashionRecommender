@@ -1,44 +1,44 @@
-name: Update Language Badges
+# name: Update Language Badges
 
-on: push
+# on: push
 
-permissions:
-  contents: write
+# permissions:
+#   contents: write
 
-jobs:
-  update-badges:
-    runs-on: ubuntu-latest
+# jobs:
+#   update-badges:
+#     runs-on: ubuntu-latest
 
-    steps:
-      # Checkout the code
-      - name: Checkout repository
-        uses: actions/checkout@v3
+#     steps:
+#       # Checkout the code
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
 
-      # Set up Python environment
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.8'
+#       # Set up Python environment
+#       - name: Set up Python
+#         uses: actions/setup-python@v4
+#         with:
+#           python-version: '3.8'
 
-      # Install required dependencies
-      - name: Install dependencies
-        run: |
-          pip install requests
+#       # Install required dependencies
+#       - name: Install dependencies
+#         run: |
+#           pip install requests
 
-      # Run the script to generate badge URLs
-      - name: Generate and Update Badges
-        run: |
-          python workflow_support/generate_language_badges.py
+#       # Run the script to generate badge URLs
+#       - name: Generate and Update Badges
+#         run: |
+#           python workflow_support/generate_language_badges.py
 
-      # Commit and push the updated README
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          git add .
-          if git diff --cached --quiet; then
-            echo ""
-          else
-            git commit -m 'updating language badges'
-            git push
-          fi
+#       # Commit and push the updated README
+#       - name: Commit and push changes
+#         run: |
+#           git config --global user.name "${{ github.actor }}"
+#           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+#           git add .
+#           if git diff --cached --quiet; then
+#             echo ""
+#           else
+#             git commit -m 'updating language badges'
+#             git push
+#           fi
