@@ -40,5 +40,5 @@ jobs:
             echo ""
           else
             git commit -m 'updating language badges'
-            git push
+            git push --force
           fi
