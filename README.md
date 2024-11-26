@@ -19,6 +19,8 @@
 [![github workflow](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/main.yml/badge.svg)](https://github.com/SRN-SE-Fall24/FashionRecommender/actions/workflows/main.yml)
 
 ![GitHub language count](https://img.shields.io/github/languages/count/SRN-SE-Fall24/FashionRecommender)
+<!-- Start marker for language badge generation -->
+<!-- End marker for language badge generation -->
 
 
 ## 💎Description</br>
