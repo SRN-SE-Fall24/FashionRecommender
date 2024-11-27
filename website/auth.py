@@ -10,29 +10,32 @@ from . import db
 from google.auth.transport import requests as google_requests
 from . import contracts
 import hashlib
+import json
 from projectsecrets.google_secret import GOOGLE_CLIENT_ID
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 # Initialize blueprint for authentication routes
-auth = Blueprint('auth', __name__)
+auth = Blueprint("auth", __name__)
 
 # OAuth2 Configuration
-CLIENT_SECRETS_FILE = os.path.join(pathlib.Path(__file__).parent.resolve(), 'creds.json')
+CLIENT_SECRETS_FILE = os.path.join(
+    pathlib.Path(__file__).parent.resolve(), "creds.json"
+)
 
 flow = Flow.from_client_secrets_file(
     client_secrets_file=CLIENT_SECRETS_FILE,
     scopes=[
         "https://www.googleapis.com/auth/userinfo.profile",
         "https://www.googleapis.com/auth/userinfo.email",
-        "openid"
+        "openid",
     ],
-    redirect_uri="http://127.0.0.1:5000/google-callback"
+    redirect_uri="http://127.0.0.1:5000/google-callback",
 )
 
 
 # Google OAuth login route
-@auth.route('/google-login')
+@auth.route("/google-login")
 def google_login():
     authorization_url, state = flow.authorization_url()
     session["state"] = state
@@ -40,7 +43,7 @@ def google_login():
 
 
 # Google OAuth callback route
-@auth.route('/google-callback')
+@auth.route("/google-callback")
 def google_callback():
     flow.fetch_token(authorization_response=request.url)
     if not session["state"] == request.args["state"]:
@@ -51,33 +54,37 @@ def google_callback():
     token_request = google_requests.Request()
 
     id_info = id_token.verify_oauth2_token(
-        id_token=credentials._id_token,
-        request=token_request,
-        audience=GOOGLE_CLIENT_ID
+        id_token=credentials._id_token, request=token_request, audience=GOOGLE_CLIENT_ID
     )
 
-    user = User.query.filter_by(email=id_info.get('email')).first()
+    user = User.query.filter_by(email=id_info.get("email")).first()
     if not user:
         user = User(
-            email=id_info.get('email'),
-            first_name=id_info.get('given_name'),
-            last_name=id_info.get('family_name'),
-            gender='Unknown',
-            phone_number='Unknown',
-            age='Unknown',
-            city='Unknown',
-            password=generate_password_hash('dummy_password')
+            email=id_info.get("email"),
+            first_name=id_info.get("given_name"),
+            last_name=id_info.get("family_name"),
+            gender="Unknown",
+            phone_number="Unknown",
+            age="Unknown",
+            city="Unknown",
+            password=generate_password_hash("dummy_password"),
         )
         db.session.add(user)
         db.session.commit()
 
     login_user(user)
+    session[contracts.SessionParameters.USERID] = user.get_id()
 
-    if user.gender == 'Unknown' or user.phone_number == 'Unknown' or user.age == 'Unknown' or user.city == 'Unknown':
-        return redirect(url_for('auth.profile_update', userid=user.id))
-    
+    if (
+        user.gender == "Unknown"
+        or user.phone_number == "Unknown"
+        or user.age == "Unknown"
+        or user.city == "Unknown"
+    ):
+        return redirect(url_for("auth.profile_update", userid=user.id))
 
     return render_template("home.html", user=current_user)
+
 
 @auth.route("/login", methods=["GET", "POST"])
 def login():
@@ -136,7 +143,7 @@ def sign_up():
                 city=city,
                 age=age,
                 phone_number=phone_number,
-                password=hashlib.sha256(password1.encode()).hexdigest()
+                password=hashlib.sha256(password1.encode()).hexdigest(),
             )
             db.session.add(new_user)
             db.session.commit()
@@ -153,6 +160,7 @@ def logout():
     logout_user()
     session.pop(contracts.SessionParameters.USERID, None)
     return redirect(url_for("auth.login"))
+
 
 @auth.route("/profile-update", methods=["GET", "POST"])
 def profile_update():

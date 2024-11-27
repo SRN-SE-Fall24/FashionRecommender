@@ -2,7 +2,7 @@ from google_images_search import GoogleImagesSearch
 import requests
 import os
 
-WEATHER_KEY = os.getenv('WEATHER_KEY')
+WEATHER_KEY = os.getenv("WEATHER_KEY")
 if not WEATHER_KEY:
     from projectsecrets.weather_secret import WEATHER_KEY
 
@@ -10,12 +10,13 @@ if not WEATHER_KEY:
 class WeatherAPI:
     def __init__(self) -> None:
         pass
-    
+
     """
     Function to fetch current weather forecast using city from external weather API
     """
+
     def getCurrentWeather(self, latitude=None, longitude=None, city=None):
-        url = f'http://api.weatherapi.com/v1/current.json?key={WEATHER_KEY}&q={city}&aqi=no'
+        url = f"http://api.weatherapi.com/v1/current.json?key={WEATHER_KEY}&q={city}&aqi=no"
         response = requests.request("GET", url, headers={}, data={})
         if response.status_code != 200:
             raise Exception(
@@ -27,9 +28,11 @@ class WeatherAPI:
         if "condition" in jsonResponse:
             return jsonResponse["condition"]["text"]
         return ""
+
     """
     Function to fetch weather forecast for future from external weather API
     """
+
     def getFutureWeather(self, date=None, city=None, time=None):
         url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{city}/{Date}?key={API_KEY2}".format(
             city=city, Date=date, API_KEY2=self.config.API_KEY
@@ -55,8 +58,8 @@ class WeatherAPI:
 
 class ImageConfig:
     def __init__(self) -> None:
-        self.API_KEY = "AIzaSyBnKm9SLLT0j_Hmw5CXV5h54GNOm_NhvLI"
-        self.PROJ_CX = "951651316f70a470c"
+        self.API_KEY = "AIzaSyAlGizJS88AOCq6EjO73_FslUHBBIIxvmE"
+        self.PROJ_CX = "36d7431dc29f44ef1"
 
 
 class QueryBuilder:
