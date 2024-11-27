@@ -23,7 +23,7 @@
 <!-- End marker for language badge generation -->
 
 
-## ?Description</br>
+## Description</br>
 Has it ever happened that you were all set with the perfect dress for your big day but you forgot to take a rain check? 
 
 Well, don't worry. Our fashion recommender is here to save your day. This ain't any regular fashion recommender but a recommender that will look out for you not only in terms of style but in terms of comfort. Now you may think how would one do that? We do this by providing you choices based on:
@@ -66,6 +66,9 @@ In this module, create files for secret variables <br>
 2. For Weather API <br>
    weather_secret.py <br>
    WEATHER_KEY="YOUR_API_KEY" <br>
+3. For Google Sign In API <br>
+   google_secret.py <br>
+   GOOGLE_CLIENT_ID="YOUR_CLIENT_ID" <br>
 
 
 ## 2. Deploying
