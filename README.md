@@ -103,4 +103,3 @@ http://localhost:5000/
 
 ## License
 [MIT License](https://github.com/SRN-SE-Fall24/FashionRecommender/blob/master/LICENSE.md)
-
