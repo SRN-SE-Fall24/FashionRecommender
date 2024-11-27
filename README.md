@@ -45,7 +45,7 @@ We have 'A style for every story' so let it be known to the world :)
 
 ## Demo
 
-[Click here to watch our demo!]([https://drive.google.com/file/d/1q5wm0qu7Mw8gSYmC17TGPrOo3cX7KVop/view?usp=sharing](https://youtu.be/8XIgC0g0Tp8)) <br>
+[Click here to watch our demo!](https://youtu.be/8XIgC0g0Tp8) <br>
 
 
 ##  Installation Procedure
