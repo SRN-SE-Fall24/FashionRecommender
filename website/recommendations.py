@@ -20,7 +20,7 @@ from datetime import datetime
 from werkzeug.utils import secure_filename
 from pathlib import Path
 
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
     from projectsecrets.gemini_secret import GEMINI_API_KEY
 
@@ -52,7 +52,7 @@ def get_recommendations():
     gender = ""
     ageGroup = ""
     city = ""
-    userid = '1'
+    userid = "1"
 
     if contracts.SessionParameters.USERID not in session:
         return (
@@ -97,16 +97,24 @@ def get_recommendations():
     from . import helper
 
     help = helper.RecommendationHelper()
-    links = help.giveRecommendations(userid=userid, gender=gender, occasion=occasion, city=city,
-                                     culture=culture, ageGroup=ageGroup, date=dateInput, time=timeInput)
+    links = help.giveRecommendations(
+        userid=userid,
+        gender=gender,
+        occasion=occasion,
+        city=city,
+        culture=culture,
+        ageGroup=ageGroup,
+        date=dateInput,
+        time=timeInput,
+    )
 
     recommendations = dict()
     recommendations[contracts.RecommendationContractResponse.LINKS] = []
     for link in links:
-        recommendations[contracts.RecommendationContractResponse.LINKS].append(
-            link)
+        recommendations[contracts.RecommendationContractResponse.LINKS].append(link)
 
-    response = model.generate_content(f'''
+    response = model.generate_content(
+        f"""
         You are a fashion recommender bot.
         Give 3 color palette suggestions with 5 colors each based on the following data:
         Occasion: {occasion},
@@ -118,8 +126,9 @@ def get_recommendations():
         Return the output in following format where there are 5 colors in each palette and each palette is sorted by color prominence:
         [[[hexColor1,item1], [hexColor2,item2], [hexColor3,item3], [hexColor4,item4], [hexColor5,item5]], [...], [...]]
         The above response should be directly parsable by JSON.parse
-        ''')
-    recommendations['COLOR_PALETTES'] = response.text
+        """
+    )
+    recommendations["COLOR_PALETTES"] = response.text
 
     return jsonify(recommendations), 200
 
@@ -140,13 +149,13 @@ def style_match():
 
         myfile = genai.upload_file(Path(temp_file_path))
 
-        prompt = '''Based on the uploaded image, can you suggest clothing items or outfit recommendations in JSON format?
+        prompt = """Based on the uploaded image, can you suggest clothing items or outfit recommendations in JSON format?
             Include the following keys:
 
             - 'recommended_outfits': A list of outfit ideas with their names and descriptions.
             - 'accessories': Suggested matching accessories with their types and color schemes.
             - 'recommended_outfits': A list of outfit ideas with their names and descriptions in form [{'name':name, 'description':description}, ...].
-            - 'style_tips': Any additional styling tips or details.'''
+            - 'style_tips': Any additional styling tips or details."""
 
         result = model.generate_content([myfile, prompt])
         response = result.text
