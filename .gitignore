@@ -138,3 +138,4 @@ libncursesw5-dev
 
 # Secrets
 projectsecrets/
+/creds.json
