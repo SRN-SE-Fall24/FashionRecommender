@@ -20,10 +20,10 @@
 
 ![GitHub language count](https://img.shields.io/github/languages/count/SRN-SE-Fall24/FashionRecommender)
 <!-- Start marker for language badge generation -->
-![Python](https://img.shields.io/badge/Python-48.74%25-blue)
-![HTML](https://img.shields.io/badge/HTML-37.92%25-blue)
-![JavaScript](https://img.shields.io/badge/JavaScript-6.69%25-blue)
-![CSS](https://img.shields.io/badge/CSS-6.65%25-blue)
+![Python](https://img.shields.io/badge/Python-48.98%25-blue)
+![HTML](https://img.shields.io/badge/HTML-37.36%25-blue)
+![JavaScript](https://img.shields.io/badge/JavaScript-7.15%25-blue)
+![CSS](https://img.shields.io/badge/CSS-6.51%25-blue)
 <!-- End marker for language badge generation -->
 
 
