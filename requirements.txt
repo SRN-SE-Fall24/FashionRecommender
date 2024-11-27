@@ -12,6 +12,7 @@ flake8>=5.0.4
 Flask>=2.2.2
 Flask-Login>=0.6.2
 Flask-SQLAlchemy>=2.5.1
+google-auth-oauthlib>=1.0.0
 google-api-core>=2.10.1
 google-api-python-client>=2.48.0
 google-auth>=2.15.0
