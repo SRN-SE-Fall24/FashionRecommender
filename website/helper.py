@@ -26,7 +26,6 @@ class WeatherHelper:
     def __init__(self) -> None:
         self.weatherAPI = utils.WeatherAPI()
 
-
     def getWeather(self, city=None, date=None, time=None):
         # coordinates = self.giveLocation(city)
         # will add proper date format after discussing the date input

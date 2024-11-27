@@ -59,7 +59,6 @@ $(document).ready(function () {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response);
             
                 try {
                     var recommendationsStr = response.recommendations.replace(/```json|\n```/g, '');
@@ -80,6 +79,18 @@ $(document).ready(function () {
                         $("#style-tips").html(`<h3>Style Tips: </h3><ul>${recommendations.style_tips.map(tip => `<li>${tip}</li>`).join('')}</ul>`);
                     } else {
                         $("#style-tips").html("<p>No style tips available.</p>");
+                    }
+
+                    if (Array.isArray(recommendations.accessories)) {
+
+                        var accessoriesHtml = "<hr><h4>Accesories:</h4><ul>";
+                        recommendations.accessories.forEach(function (accessory) {
+                            accessoriesHtml += `<li><strong>${accessory.type}:</strong> ${accessory.color_scheme}</li>`;
+                        });
+                        accessoriesHtml += "</ul>";
+                        $("#accessories-suggestions").html(accessoriesHtml);
+                    } else {
+                        $("#accessories-suggestions").html("<p>No accessories found.</p>");
                     }
             
                     $("#recommendations-section").show();
