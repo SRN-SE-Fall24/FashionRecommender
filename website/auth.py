@@ -1,15 +1,84 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for, session
-from .models import User
-from werkzeug.security import generate_password_hash, check_password_hash
-from . import db
+from flask import Blueprint, redirect, request, url_for, session, flash, render_template
 from flask_login import login_user, login_required, logout_user, current_user
+from google_auth_oauthlib.flow import Flow
+from werkzeug.security import generate_password_hash, check_password_hash
+import os
+import pathlib
+from google.oauth2 import id_token
+from .models import User, Preference
+from . import db
+from google.auth.transport import requests as google_requests
 from . import contracts
 import hashlib
+from projectsecrets.google_secret import GOOGLE_CLIENT_ID
 
-auth = Blueprint("auth", __name__)
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+
+# Initialize blueprint for authentication routes
+auth = Blueprint('auth', __name__)
+
+# OAuth2 Configuration
+CLIENT_SECRETS_FILE = os.path.join(pathlib.Path(__file__).parent.resolve(), 'creds.json')
+
+flow = Flow.from_client_secrets_file(
+    client_secrets_file=CLIENT_SECRETS_FILE,
+    scopes=[
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/userinfo.email",
+        "openid"
+    ],
+    redirect_uri="http://127.0.0.1:5000/google-callback"
+)
 
 
-# Login authentication module that takes user email and password as input and validates against the database before giving authorization to the page
+# Google OAuth login route
+@auth.route('/google-login')
+def google_login():
+    authorization_url, state = flow.authorization_url()
+    session["state"] = state
+    return redirect(authorization_url)
+
+
+# Google OAuth callback route
+@auth.route('/google-callback')
+def google_callback():
+    flow.fetch_token(authorization_response=request.url)
+    if not session["state"] == request.args["state"]:
+        os.abort(500)
+
+    # Store the credentials in session
+    credentials = flow.credentials
+    token_request = google_requests.Request()
+
+    id_info = id_token.verify_oauth2_token(
+        id_token=credentials._id_token,
+        request=token_request,
+        audience=GOOGLE_CLIENT_ID
+    )
+
+    user = User.query.filter_by(email=id_info.get('email')).first()
+    if not user:
+        user = User(
+            email=id_info.get('email'),
+            first_name=id_info.get('given_name'),
+            last_name=id_info.get('family_name'),
+            gender='Unknown',
+            phone_number='Unknown',
+            age='Unknown',
+            city='Unknown',
+            password=generate_password_hash('dummy_password')
+        )
+        db.session.add(user)
+        db.session.commit()
+
+    login_user(user)
+
+    if user.gender == 'Unknown' or user.phone_number == 'Unknown' or user.age == 'Unknown' or user.city == 'Unknown':
+        return redirect(url_for('auth.profile_update', userid=user.id))
+    
+
+    return render_template("home.html", user=current_user)
+
 @auth.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -18,7 +87,7 @@ def login():
 
         user = User.query.filter_by(email=email).first()
         if user:
-            if hashlib.sha256(password.encode()).hexdigest() == user.password:  # check_password_hash(user.password, password):
+            if hashlib.sha256(password.encode()).hexdigest() == user.password:
                 flash("Logged in successfully!", category="success")
                 session[contracts.SessionParameters.USERID] = user.get_id()
                 login_user(user, remember=True)
@@ -31,19 +100,9 @@ def login():
     return render_template("login.html", user=current_user)
 
 
-@auth.route("/logout")
-@login_required
-def logout():
-    logout_user()
-    session.pop(contracts.SessionParameters.USERID, None)
-    return redirect(url_for("auth.login"))
-
-
-# get and post both come to the same aciton. When we hit the sign up end point on the URL, a get request is generated.
-# This generates the view. Submitting the form hits the same action. We run the logic for post now.
+# Sign up route
 @auth.route("/sign-up", methods=["GET", "POST"])
 def sign_up():
-    # For the post request.
     if request.method == "POST":
         email = request.form.get("email")
         first_name = request.form.get("firstName")
@@ -77,7 +136,7 @@ def sign_up():
                 city=city,
                 age=age,
                 phone_number=phone_number,
-                password=hashlib.sha256(password1.encode()).hexdigest()  # generate_password_hash(password1, method="sha256"),
+                password=hashlib.sha256(password1.encode()).hexdigest()
             )
             db.session.add(new_user)
             db.session.commit()
@@ -85,11 +144,16 @@ def sign_up():
             flash("Account created!", category="success")
             return render_template("home.html", user=new_user)
 
-    # For get request.
     return render_template("sign_up.html", user=current_user)
 
 
-# Profile Update function that takes phone number, city, age, user_id as input from the form data and submits a POST request to update the input values to the database.
+@auth.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    session.pop(contracts.SessionParameters.USERID, None)
+    return redirect(url_for("auth.login"))
+
 @auth.route("/profile-update", methods=["GET", "POST"])
 def profile_update():
     # For the post request.
@@ -112,4 +176,13 @@ def profile_update():
             return render_template("home.html", user=user)
 
     # For get request.
-    return render_template("profile.html", user=current_user)
+    preferenceObject = Preference.query.filter_by(userid=int(current_user.id)).first()
+    if preferenceObject:
+        try:
+            prefData = json.loads(preferenceObject.preferences)
+        except json.JSONDecodeError:
+            prefData = {}
+    else:
+        prefData = {}
+
+    return render_template("profile.html", user=current_user, prefData=prefData)
