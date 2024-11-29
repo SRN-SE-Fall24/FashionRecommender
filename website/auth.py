@@ -12,9 +12,7 @@ from . import contracts
 import hashlib
 import json
 
-GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
-if not GOOGLE_CLIENT_ID:
-    from projectsecrets.google_secret import GOOGLE_CLIENT_ID
+GOOGLE_CLIENT_ID = "1086877699482-kv5dvqo6n178o3806o7la513oeqchtmv.apps.googleusercontent.com"
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
