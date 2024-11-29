@@ -11,7 +11,10 @@ from google.auth.transport import requests as google_requests
 from . import contracts
 import hashlib
 import json
-from projectsecrets.google_secret import GOOGLE_CLIENT_ID
+
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
+if not GOOGLE_CLIENT_ID:
+    from projectsecrets.google_secret import GOOGLE_CLIENT_ID
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
