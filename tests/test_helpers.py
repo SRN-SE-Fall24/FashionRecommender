@@ -10,7 +10,7 @@ def test_search_image_query_builder(app):
     query = siObject.getQueryString(queries=query_key_words, culture="Indian")
     print("QUERY")
     print(query)
-    assert query == 'Suggested Indian outfits for  gender female  in Clear weather to a "Wedding" '
+    assert query == 'Suggest Indian outfits for  gender female  in Clear weather to a "Wedding" '
 
 
 def test_weather_api(app):
